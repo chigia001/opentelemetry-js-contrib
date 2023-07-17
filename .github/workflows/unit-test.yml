@@ -11,7 +11,7 @@ jobs:
       matrix:
         node: ["14", "16", "18"]
         include:
-          - lerna-extra-args: |
+          - lerna-extra-args: >-
               --scope @opentelemetry/instrumentation-graphql
               --scope @opentelemetry/instrumentation-mongo
     runs-on: ubuntu-latest
