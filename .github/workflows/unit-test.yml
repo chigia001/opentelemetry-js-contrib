@@ -13,6 +13,7 @@ jobs:
         include:
           - lerna-extra-args: |
               --scope @opentelemetry/instrumentation-graphql
+              --scope @opentelemetry/instrumentation-mongo
     runs-on: ubuntu-latest
     services:
       memcached:
