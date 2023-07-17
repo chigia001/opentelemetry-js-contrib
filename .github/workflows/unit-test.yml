@@ -1,7 +1,7 @@
 name: Unit Tests
 on:
   push:
-    branches: [main]
+    branches: [test-graphql]
   pull_request:
 
 jobs:
@@ -10,6 +10,9 @@ jobs:
       fail-fast: false
       matrix:
         node: ["14", "16", "18"]
+        include:
+          - lerna-extra-args: |
+              --scope @opentelemetry/instrumentation-graphql
     runs-on: ubuntu-latest
     services:
       memcached:
@@ -147,7 +150,7 @@ jobs:
       - name: Bootstrap Dependencies
         run: npx lerna bootstrap --no-ci --hoist --nohoist='zone.js' --nohoist='mocha' --nohoist='ts-mocha'
       - name: Unit tests
-        run: npm run test:ci:changed -- ${{ matrix.lerna-extra-args }}
+        run: npm run test -- ${{ matrix.lerna-extra-args }}
       - name: Build examples
         run: npm run compile:examples
       - name: Report Coverage
